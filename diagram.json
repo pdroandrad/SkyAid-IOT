@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "author": "Pedro Andrade",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht", "top": -180, "left": 30, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "pirButton",
+      "top": 140.6,
+      "left": -163.2,
+      "attrs": { "color": "red", "label": "PIR Simulado", "bounce": "1" }
+    },
+    { "type": "wokwi-slide-potentiometer", "id": "pot", "top": 200, "left": 150, "attrs": {} },
+    { "type": "wokwi-gps", "id": "gps", "top": 300, "left": 150, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:3V3", "dht:VCC", "red", [ "h-23.81", "v-93.9" ] ],
+    [ "esp:GND", "dht:GND", "black", [ "v0" ] ],
+    [ "esp:15", "dht:SDA", "green", [ "h24.04", "v-237.9" ] ],
+    [ "esp:26", "pirButton:1.l", "#8f4814", [ "h-177.41", "v38.4" ] ],
+    [ "esp:GND", "pirButton:2.r", "black", [ "v0" ] ],
+    [ "esp:3V3", "pot:VCC", "red", [ "h-23.81", "v214.2" ] ],
+    [ "esp:GND", "pot:GND", "black", [ "v0" ] ],
+    [ "esp:35", "pot:SIG", "green", [ "h-43.01", "v186.2" ] ],
+    [ "esp:3V3", "gps:VCC", "red", [ "v0" ] ],
+    [ "esp:GND", "gps:GND", "black", [ "v0" ] ],
+    [ "esp:16", "gps:TX", "green", [ "v0" ] ],
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pirButton:2.l", "esp:GND.2", "black", [ "h-28.8", "v-182.2", "h307.2" ] ]
+  ],
+  "dependencies": {}
+}
